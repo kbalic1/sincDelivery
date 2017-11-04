@@ -1,0 +1,260 @@
+﻿@model sincDelivery.BDO.PutniNalog.PutniNalogBDO
+
+@{
+    ViewBag.Title = "KreirajPutniNalog";
+}
+
+
+<div id="wrapper">
+    <!-- Navigation -->
+
+    <div id="page-wrapper">
+        <h2>Kreiraj Putni Nalog</h2>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Sifra, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Sifra, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Sifra, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.VoziloID, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownListFor(model => model.VoziloID, (SelectList)ViewBag.Vozila, "Izaberite",  new { @class = "form-control" } )
+                        @Html.ValidationMessageFor(model => model.VoziloID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.VozacID, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownListFor(model => model.VozacID, (SelectList)ViewBag.Vozaci, "Izaberite", new { @class = "form-control" } )
+                        @Html.ValidationMessageFor(model => model.VozacID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.PocetnaKilometraza, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.PocetnaKilometraza, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.PocetnaKilometraza, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+
+
+
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Opis, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Opis, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Opis, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.DatumIVrijemePolaska, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <input id="datetimepicker" type="text" name="DatumIVrijemePolaska"/>
+                        @Html.ValidationMessageFor(model => model.DatumIVrijemePolaska, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+
+                <div class="row">
+
+                    <div class="col-md-4">
+                        <span id="postavkeSpan">Polazak</span>
+                        <input type="text" id="origin-input" class="input-text" placeholder="Željeznička stanica Sarajevo" name="Polazak" value="">
+
+                    </div>
+                    <div class="col-md-4">
+                        <span id="postavkeSpan">Odredište</span>
+                        <input type="text" id="destination-input" class="input-text controls" placeholder="Banja Luka, Mostar, Zagreb, Beograd" name="Odrediste" value="">
+
+                    </div>
+                    
+                </div>
+                <div id="map" style="height:30em">
+
+                </div>
+
+
+                <div class="form-group marginTop10">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Kreiraj nalog" class="btn btn-default" />
+                    </div>
+                </div>
+            </div>
+        }
+
+
+    </div>
+</div>
+
+
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+
+
+<link href="~/Content/jquery.datetimepicker.min.css" rel="stylesheet">
+<script src="~/Scripts/jquery.datetimepicker.full.min.js"></script>
+
+
+<script>
+    $.datetimepicker.setLocale('en');
+    $('#datetimepicker').datetimepicker();
+</script>
+
+
+
+<script>
+
+    function initMap() {
+        //googlovi id-ovi za mjesta
+        var origin_place_id = null;
+        var destination_place_id = null;
+        var travel_mode = 'DRIVING';
+        var vrijednostPrvog = null;
+        var vrijednostDrugog = null;
+
+        //Mapa
+        var map = new google.maps.Map(document.getElementById('map'), {
+            mapTypeControl: false,
+            center: { lat: 44.2591, lng: 17.5638 },
+            zoom: 7
+
+        });
+        var directionsService = new google.maps.DirectionsService;
+        var directionsDisplay = new google.maps.DirectionsRenderer;
+
+        directionsDisplay.setMap(map);
+        var origin_input = document.getElementById('origin-input');
+        var destination_input = document.getElementById('destination-input');
+        var origin_autocomplete = new google.maps.places.Autocomplete(origin_input);
+        origin_autocomplete.bindTo('bounds', map);
+        var destination_autocomplete =
+                new google.maps.places.Autocomplete(destination_input);
+        destination_autocomplete.bindTo('bounds', map);
+        var waypoint_autocomplete = new google.maps.places.Autocomplete(waypoint_autocomplete);
+        waypoint_autocomplete.bindTo('bounds', map);
+
+        function expandViewportToFitPlace(map, place) {
+            if (place.geometry.viewport) {
+                map.fitBounds(place.geometry.viewport);
+            } else {
+                map.setCenter(place.geometry.location);
+                map.setZoom(17);
+            }
+        }
+        if (vrijednostPrvog != null && vrijednostDrugog != null) {
+            origin_place_id = vrijednostPrvog;
+            destination_place_id = vrijednostDrugog;
+            route(origin_place_id, destination_place_id, travel_mode,
+                directionsService, directionsDisplay);
+        }
+
+        origin_autocomplete.addListener('place_changed', function () {
+            var place = origin_autocomplete.getPlace();
+            if (!place.geometry) {
+                window.alert("Nismo mogli pronaci traženo mjesto!");
+                return;
+            }
+            expandViewportToFitPlace(map, place);
+            // If the place has a geometry, store its place ID and route if we have
+            // the other place ID
+            origin_place_id = place.place_id;
+            route(origin_place_id, destination_place_id, travel_mode,
+                    directionsService, directionsDisplay);
+        });
+        destination_autocomplete.addListener('place_changed', function () {
+            var place = destination_autocomplete.getPlace();
+            if (!place.geometry) {
+                window.alert("Nismo mogli pronaci traženo mjesto!");
+                return;
+            }
+            expandViewportToFitPlace(map, place);
+            // If the place has a geometry, store its place ID and route if we have
+            // the other place ID
+            destination_place_id = place.place_id;
+            route(origin_place_id, destination_place_id, travel_mode,
+                    directionsService, directionsDisplay);
+        });
+
+        function route(origin_place_id, destination_place_id, travel_mode,
+                       directionsService, directionsDisplay) {
+            if (!origin_place_id || !destination_place_id) {
+                return;
+            }
+            //Ako faila forma
+            directionsService.route({
+                origin: { 'placeId': origin_place_id },
+                destination: { 'placeId': destination_place_id },
+                provideRouteAlternatives: true,
+                travelMode: travel_mode,
+                // waypoints: tacke
+            }, function (response, status) {
+                if (status === 'OK') {
+                    for (var i = 0, len = response.routes.length; i < len; i++) {
+                          new google.maps.DirectionsRenderer({
+                               map: map,
+                               directions: response,
+                               routeIndex: i
+                           });
+
+                          directionsDisplay.setDirections(response);
+
+                       /* var polyline = new google.maps.Polyline({
+                            path: [],
+                            strokeColor: '#0000FF',
+                            strokeWeight: 3
+                        });
+                        var bounds = new google.maps.LatLngBounds();
+
+
+                        var legs = response.routes[0].legs;
+                        for (i = 0; i < legs.length; i++) {
+                            var steps = legs[i].steps;
+                            for (j = 0; j < steps.length; j++) {
+                                var nextSegment = steps[j].path;
+                                for (k = 0; k < nextSegment.length; k++) {
+                                    polyline.getPath().push(nextSegment[k]);
+                                    bounds.extend(nextSegment[k]);
+                                }
+                            }
+                        }
+
+                        polyline.setMap(map);*/
+                    }
+
+                } else {
+                    if (status == 'NOT_FOUND' || status == 'ZERO_RESULTS') {
+                        window.alert('Pokušajte biti precizniji!');
+                    }
+                    if (status == 'MAX_WAYPOINTS_EXCEEDED') {
+                        window.alert('Dodali ste previše usputnih tacki!');
+                    }
+                    console.log(status);
+                }
+            });
+        }
+    }
+
+</script>
+
+
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRbZAIAVDDEbFFXV-7ThDbPm_wfO6DXOA&libraries=places&callback=initMap"
+        async defer></script>

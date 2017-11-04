@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="9febbefe2e4542ab881d9845bddbb641" Name="Diagram1" ZoomLevel="73">
+        <EntityTypeShape EntityType="sincDeliveryModel.AspNetRole" Width="1.5" PointX="7.75" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="sincDeliveryModel.AspNetUserClaim" Width="1.5" PointX="12.25" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="sincDeliveryModel.AspNetUserLogin" Width="1.5" PointX="12.25" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="sincDeliveryModel.AspNetUser" Width="1.5" PointX="10" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sincDeliveryModel.KorisnikTip" Width="1.5" PointX="5.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="sincDeliveryModel.PutniNalog" Width="1.5" PointX="5.25" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sincDeliveryModel.PutniNalogStatu" Width="1.5" PointX="3" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="sincDeliveryModel.Vozilo" Width="1.5" PointX="3" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="sincDeliveryModel.VoziloMarka" Width="1.5" PointX="0.75" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="sincDeliveryModel.VoziloMarkaTip" Width="1.5" PointX="7.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="sincDeliveryModel.VoziloStatu" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="sincDeliveryModel.VoziloTip" Width="1.5" PointX="0.75" PointY="8.125" IsExpanded="true" />
+        <AssociationConnector Association="sincDeliveryModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="sincDeliveryModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="sincDeliveryModel.FK__PutniNalo__Statu__48CFD27E" ManuallyRouted="false" />
+        <AssociationConnector Association="sincDeliveryModel.FK__PutniNalo__Statu__49C3F6B7" ManuallyRouted="false" />
+        <AssociationConnector Association="sincDeliveryModel.FK__PutniNalo__Vozil__4CA06362" ManuallyRouted="false" />
+        <AssociationConnector Association="sincDeliveryModel.FK__PutniNalo__Vozil__4D94879B" ManuallyRouted="false" />
+        <AssociationConnector Association="sincDeliveryModel.FK__Vozilo__MarkaVoz__4316F928" ManuallyRouted="false" />
+        <AssociationConnector Association="sincDeliveryModel.FK__Vozilo__StatusVo__440B1D61" ManuallyRouted="false" />
+        <AssociationConnector Association="sincDeliveryModel.FK__Vozilo__TipVozil__45F365D3" ManuallyRouted="false" />
+        <AssociationConnector Association="sincDeliveryModel.AspNetUserRoles" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="sincDeliveryModel.Obavjestenje" Width="1.5" PointX="10.375" PointY="9.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

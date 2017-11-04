@@ -1,0 +1,144 @@
+﻿@model sincDelivery.BDO.Obavjestenje.ObavjestenjeBDO
+@{
+    ViewBag.Title = "KreirajNovoObavjestenje";
+}
+
+
+<div id="wrapper">
+    <!-- Navigation -->
+
+    <div id="page-wrapper">
+        <h2>Kreiraj novo obavjestenje</h2>
+
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Naslov, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Naslov, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Naslov, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Tekst, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.TextAreaFor(model => model.Tekst, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Tekst, "", new { @class = "text-danger" })
+                    </div>
+                </div>                
+
+                <div class="form-group">
+                    @Html.Label("Vozac", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownListFor(model => model.VozacID, (SelectList)ViewBag.Vozaci, "Izaberite", new { @class = "form-control" } )
+                        @Html.ValidationMessageFor(model => model.VozacID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    @Html.Label("Nalog", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownListFor(model => model.NalogID, (SelectList)ViewBag.Nalozi, "Izaberite",  new { @class = "form-control" } )
+                        @Html.ValidationMessageFor(model => model.NalogID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="row">
+
+                    
+                        @*<span id="postavkeSpan">Lokacija</span>*@
+                        <input type="text" id="pac-input" class="input-text" placeholder="Željeznička stanica Sarajevo" name="Lokacija" value="">
+                    <input type="text" id="PlaceID" class="input-text" placeholder="Željeznička stanica Sarajevo" name="PlaceID" value="" hidden>
+
+                 
+
+                </div>
+
+                <div id="map" style="height:30em"></div>
+
+              
+
+                <div class="form-group" style="margin-top:2%">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Kreiraj obavjestenje" class="btn btn-default" />
+                    </div>
+                </div>
+            </div>
+        }
+
+    </div>
+</div>
+
+
+
+
+<script>
+    
+
+      function initMap() {
+        var map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: -33.8688, lng: 151.2195},
+          zoom: 13
+        });
+
+        var input = document.getElementById('pac-input');
+
+        var autocomplete = new google.maps.places.Autocomplete(input);
+        autocomplete.bindTo('bounds', map);
+
+        map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+       /* var infowindow = new google.maps.InfoWindow();
+        var infowindowContent = document.getElementById('infowindow-content');
+        infowindow.setContent(infowindowContent);*/
+        var marker = new google.maps.Marker({
+          map: map
+        });
+        marker.addListener('click', function() {
+          infowindow.open(map, marker);
+        });
+
+        autocomplete.addListener('place_changed', function() {
+         // infowindow.close();
+            var place = autocomplete.getPlace();
+
+            document.getElementById('PlaceID').value = place.place_id;
+          if (!place.geometry) {
+            return;
+          }
+
+          if (place.geometry.viewport) {
+            map.fitBounds(place.geometry.viewport);
+          } else {
+            map.setCenter(place.geometry.location);
+            map.setZoom(17);
+          }
+
+          // Set the position of the marker using the place ID and location.
+          marker.setPlace({
+            placeId: place.place_id,
+            location: place.geometry.location
+          });
+          marker.setVisible(true);
+
+        /*  infowindowContent.children['place-name'].textContent = place.name;
+          infowindowContent.children['place-id'].textContent = place.place_id;
+          infowindowContent.children['place-address'].textContent =
+              place.formatted_address;
+          infowindow.open(map, marker);*/
+        });
+      }
+</script>
+
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRbZAIAVDDEbFFXV-7ThDbPm_wfO6DXOA&libraries=places&callback=initMap"
+        async defer></script>

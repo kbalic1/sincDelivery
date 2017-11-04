@@ -1,0 +1,322 @@
+﻿@model sincDelivery.Models.NalogWrapper
+@{
+    ViewBag.Title = "Nalog";
+}
+
+
+<div id="wrapper">
+
+    <div id="page-wrapper">
+        <h2 class="text-center naslovNaloga">Nalog - @Model.putniNalog.Sifra</h2>
+
+
+        <div class="row">
+            <div class="col-md-6">
+                <div id="map" style="height:20em;width:20em">
+
+                </div>
+
+                <div class="text-center" style="margin-top:3%">
+                    <a href="javascript:zavrsiNalog(@Model.putniNalog.ID)"><span class="glyphicon glyphicon-ok"> Završi nalog</span></a>
+                </div>
+
+            </div>
+
+            <div class="col-md-6">
+                <div class="address">
+                    <address>
+                        <div class="row">
+                            <div class="col col-sm-6">
+                                <strong>Polazak: </strong>
+                            </div>
+                            <div class="col col-sm-4">
+                                @Model.putniNalog.PolazakFull
+                            </div>
+                        </div><br />
+
+                        <div class="row">
+                            <div class="col col-sm-6">
+                                <strong>Odrediste: </strong>
+                            </div>
+                            <div class="col col-sm-4">
+                                @Model.putniNalog.OdredisteFull
+                            </div>
+                        </div><br />
+
+
+                        <div class="row">
+                            <div class="col col-sm-6">
+                                <strong>Datum i vrijeme polaska: </strong>
+                            </div>
+                            <div class="col col-sm-4">
+                                @Model.putniNalog.DatumIVrijemePolaska
+                            </div>
+                        </div><br />
+
+                        <div class="row">
+                            <div class="col col-sm-6">
+                                <strong>Vozilo: </strong>
+                            </div>
+                            <div class="col col-sm-4">
+                                @Model.putniNalog.Vozilo
+                            </div>
+                        </div><br />
+
+
+                        <div class="row">
+                            <div class="col col-sm-6">
+                                <strong>Vozac: </strong>
+                            </div>
+                            <div class="col col-sm-4">
+                                @Model.putniNalog.Vozac
+                            </div>
+                        </div><br />
+
+
+                    </address>
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+        <div>
+            <h2 class="text-center">Obavještenja</h2>
+            @if (Model.listaObavjestenja.Count == 0)
+            {
+                <h3 class="text-center">Nema obajestenja za nalog</h3>
+            }
+            else
+            {
+                <div class="row">
+
+                    @foreach (var x in Model.listaObavjestenja)
+                    {
+                        <div class="col-md-12 crveniOkvir">
+
+                            <div class="pro-ratting float-left">
+                                <span>Naslov:</span>
+                                @x.Naslov
+
+                            </div>
+
+                            <div class="pro-ratting float-left">
+                                <span>Lokacija:</span>
+                                @x.Lokacija
+                            </div>
+
+                            <div class="pro-ratting float-left">
+                                <span>Vrijeme:</span>
+                                @x.DatumIVrijemeKreiranja
+                            </div>
+                            <div class="pro-ratting float-left">
+                                <span>Opis:</span>
+                                @x.Tekst
+                            </div>
+
+
+                            <div id="map_@x.ID" style="height:20em">
+
+                            </div>
+
+                        </div>
+                    }
+
+
+                </div>
+            }
+
+        </div>
+
+
+        <div>
+            <h2 class="text-center">Alternativne rute</h2>
+
+            @if (Model.listaObavjestenja.Count == 0)
+            {
+                <h3 class="text-center">Nema još uvijek alternativnih ruta</h3>
+            }
+            else
+            {
+
+            <div id="mapAlternativa" style="height:30em;">
+
+            </div>
+            }
+        </div>
+
+
+    </div>
+</div>
+
+<script>
+
+    var directionsDisplay;
+    var directionsService;
+    var map;
+
+    function initMap() {
+        directionsDisplay = new google.maps.DirectionsRenderer();
+        var chicago = new google.maps.LatLng(41.850033, -87.6500523);
+        var mapOptions = {
+            zoom: 7,
+            center: chicago
+        }
+        map = new google.maps.Map(document.getElementById('map'), mapOptions);
+        directionsDisplay.setMap(map);
+
+        calcRoute();
+    }
+
+    function calcRoute() {
+        directionsService = new google.maps.DirectionsService();
+        var start = '@Model.putniNalog.PolazakFull';
+        var end = ' @Model.putniNalog.OdredisteFull';
+
+        var request = {
+            origin: start,
+            destination: end,
+            travelMode: 'DRIVING'
+        };
+        directionsService.route(request, function (result, status) {
+            if (status == 'OK') {
+                directionsDisplay.setDirections(result);
+            }
+        });
+
+
+
+        @foreach (var item in Model.listaObavjestenja)
+        {
+            <text>initMapZaObavijest('@item.ID', '@item.PlaceID');</text>
+        }
+
+        alternativa();
+
+    }
+
+
+
+
+
+    var mapica;
+
+
+    function initMapZaObavijest(id, lokacija) {
+        var uluru = { lat: 44.2591, lng: 17.5638 };
+
+        var mapica = new google.maps.Map(document.getElementById('map_' + id), {
+            zoom: 7,
+            center: uluru
+        });
+
+        var service = new google.maps.places.PlacesService(mapica);
+        service.getDetails({
+            placeId: lokacija
+        }, function (result, status) {
+            var marker = new google.maps.Marker({
+                map: mapica,
+                place: {
+                    placeId: lokacija,
+                    location: result.geometry.location
+                }
+            });
+            // mapica.setCenter(marker.getPosition());
+        });
+
+        /* var marker = new google.maps.Marker({
+             position: lokacija,
+             map: map
+         });*/
+    }
+
+    function alternativa() {
+        //googlovi id-ovi za mjesta
+        var origin_place_id = null;
+        var destination_place_id = null;
+        var travel_mode = 'DRIVING';
+        var vrijednostPrvog = null;
+        var vrijednostDrugog = null;
+
+        //Mapa
+        var map = new google.maps.Map(document.getElementById('mapAlternativa'), {
+            mapTypeControl: false,
+            center: { lat: 44.2591, lng: 17.5638 },
+            zoom: 7
+
+        });
+        var directionsService = new google.maps.DirectionsService;
+        var directionsDisplay = new google.maps.DirectionsRenderer;
+
+        directionsDisplay.setMap(map);
+      
+        var start = '@Model.putniNalog.PolazakFull';
+        var end = ' @Model.putniNalog.OdredisteFull';
+        
+            //Ako faila forma
+            directionsService.route({
+                origin:start,
+                destination:end,
+                provideRouteAlternatives: true,
+                travelMode: travel_mode,
+                // waypoints: tacke
+            }, function (response, status) {
+                if (status === 'OK') {
+                    for (var i = 0, len = response.routes.length; i < len; i++) {
+                        new google.maps.DirectionsRenderer({
+                            map: map,
+                            directions: response,
+                            routeIndex: i
+                        });
+
+                        directionsDisplay.setDirections(response);
+
+                      
+                    }
+
+                }
+            });
+        
+    }
+
+</script>
+
+
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRbZAIAVDDEbFFXV-7ThDbPm_wfO6DXOA&libraries=places&callback=initMap"
+        async defer></script>
+
+
+
+<script>
+
+
+    function zavrsiNalog(id) {
+
+                if (confirm('Da li ste sigurni da želite da završite nalog')) {
+
+                    $.ajax({
+                        type: "GET",
+                        url: '@Url.Action("ZavrsiNalog", "PutniNalog")',
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        traditional: true,
+                        data: { nalogID: id },
+                        success: function (data) {
+
+                            alert("Nalog završen");
+                            window.location.href="../../PutniNalog/Index";
+
+                        },
+                        error: function (data) {
+
+                        }
+                    })
+                } else {
+                    // Do nothing!
+                }
+
+            }
+</script>

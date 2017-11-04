@@ -1,0 +1,969 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="sincDeliveryModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AspNetRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaims">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ClaimType" Type="nvarchar(max)" />
+          <Property Name="ClaimValue" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogins">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ProviderKey" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserRoles">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="KorisnikID" Type="int" Nullable="false" />
+          <Property Name="Ime" Type="nvarchar(max)" />
+          <Property Name="Prezime" Type="nvarchar(max)" />
+          <Property Name="GradID" Type="int" />
+          <Property Name="DatumRodjenja" Type="datetime" />
+          <Property Name="Telefon" Type="nvarchar" MaxLength="20" />
+          <Property Name="ProfilnaSlika" Type="nvarchar(max)" />
+          <Property Name="Opis" Type="nvarchar" MaxLength="300" />
+          <Property Name="Aktivan" Type="bit" />
+          <Property Name="Spol" Type="nvarchar(max)" />
+          <Property Name="Email" Type="nvarchar" MaxLength="256" />
+          <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+          <Property Name="PasswordHash" Type="nvarchar(max)" />
+          <Property Name="SecurityStamp" Type="nvarchar(max)" />
+          <Property Name="PhoneNumber" Type="nvarchar(max)" />
+          <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="datetime" />
+          <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="KorisnikTipicID" Type="int" />
+          <Property Name="KorisnikTipID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="KorisnikTip">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Naziv" Type="nvarchar" MaxLength="50" />
+          <Property Name="Aktivan" Type="bit" />
+        </EntityType>
+        <EntityType Name="Obavjestenje">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Tekst" Type="text" />
+          <Property Name="Lokacija" Type="nvarchar" MaxLength="300" />
+          <Property Name="Naslov" Type="nvarchar" MaxLength="50" />
+          <Property Name="Aktivan" Type="bit" />
+          <Property Name="DatumIVrijemeKreiranja" Type="datetime" />
+          <Property Name="IzdaoObavjestenjeID" Type="nchar" MaxLength="10" />
+          <Property Name="VozacID" Type="int" />
+          <Property Name="NalogID" Type="int" />
+          <Property Name="PlaceID" Type="nvarchar" MaxLength="300" />
+        </EntityType>
+        <EntityType Name="PutniNalog">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Sifra" Type="nvarchar" MaxLength="50" />
+          <Property Name="VoziloID" Type="int" />
+          <Property Name="VozacID" Type="int" />
+          <Property Name="PocetnaKilometraza" Type="int" />
+          <Property Name="KrajnjaKilometraza" Type="int" />
+          <Property Name="PotrosenoGoriva" Type="float" />
+          <Property Name="ZaposlenikIzdaoID" Type="int" />
+          <Property Name="ZaposlenikZakljucioID" Type="int" />
+          <Property Name="StatusID" Type="int" />
+          <Property Name="Opis" Type="nvarchar" MaxLength="300" />
+          <Property Name="DatumIVrijemeIzdavanja" Type="datetime" />
+          <Property Name="DatumIVrijemeZakljucivanja" Type="datetime" />
+          <Property Name="DatumIVrijemePolaska" Type="datetime" />
+          <Property Name="DatumIVrijemeDolaska" Type="datetime" />
+          <Property Name="Zavrseno" Type="bit" />
+          <Property Name="Norma" Type="float" />
+          <Property Name="Aktivan" Type="bit" />
+          <Property Name="LokacijaPolazak" Type="nvarchar" MaxLength="200" />
+          <Property Name="LokacijaOdrediste" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="PutniNalogStatus">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Naziv" Type="nvarchar" MaxLength="50" />
+          <Property Name="Aktivan" Type="bit" />
+        </EntityType>
+        <EntityType Name="Vozilo">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Naziv" Type="nvarchar" MaxLength="50" />
+          <Property Name="GarazniBroj" Type="nvarchar" MaxLength="20" />
+          <Property Name="RegistarskiBroj" Type="nvarchar" MaxLength="9" />
+          <Property Name="BrojSasije" Type="nvarchar" MaxLength="20" />
+          <Property Name="Kilometraza" Type="int" />
+          <Property Name="MarkaVozilaID" Type="int" />
+          <Property Name="TipVozilaID" Type="int" />
+          <Property Name="StatusVozilaID" Type="int" />
+          <Property Name="ProsjecnaPotrosnja" Type="float" />
+          <Property Name="TrenutnaLokacijaX" Type="float" />
+          <Property Name="TrenutnaLokacijaY" Type="float" />
+          <Property Name="Aktivan" Type="bit" />
+        </EntityType>
+        <EntityType Name="VoziloMarka">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Naziv" Type="nvarchar" MaxLength="50" />
+          <Property Name="Aktivan" Type="bit" />
+        </EntityType>
+        <EntityType Name="VoziloMarkaTip">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Naziv" Type="nvarchar" MaxLength="50" />
+          <Property Name="Aktivan" Type="bit" />
+        </EntityType>
+        <EntityType Name="VoziloStatus">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Naziv" Type="nvarchar" MaxLength="50" />
+          <Property Name="Aktivan" Type="bit" />
+        </EntityType>
+        <EntityType Name="VoziloTip">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Naziv" Type="nvarchar" MaxLength="50" />
+          <Property Name="Aktivan" Type="bit" />
+        </EntityType>
+        <Association Name="FK__PutniNalo__Statu__48CFD27E">
+          <End Role="PutniNalogStatus" Type="Self.PutniNalogStatus" Multiplicity="0..1" />
+          <End Role="PutniNalog" Type="Self.PutniNalog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PutniNalogStatus">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PutniNalog">
+              <PropertyRef Name="StatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PutniNalo__Statu__49C3F6B7">
+          <End Role="PutniNalogStatus" Type="Self.PutniNalogStatus" Multiplicity="0..1" />
+          <End Role="PutniNalog" Type="Self.PutniNalog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PutniNalogStatus">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PutniNalog">
+              <PropertyRef Name="StatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <!--Errors Found During Generation:
+warning 6035: The relationship 'FK__PutniNalo__Vozac__33D4B598' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
+        <Association Name="FK__PutniNalo__Vozac__33D4B598" />-->
+        <!--Errors Found During Generation:
+warning 6035: The relationship 'FK__PutniNalo__Vozac__4AB81AF0' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
+        <Association Name="FK__PutniNalo__Vozac__4AB81AF0" />-->
+        <!--Errors Found During Generation:
+warning 6035: The relationship 'FK__PutniNalo__Vozac__4BAC3F29' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
+        <Association Name="FK__PutniNalo__Vozac__4BAC3F29" />-->
+        <Association Name="FK__PutniNalo__Vozil__4CA06362">
+          <End Role="Vozilo" Type="Self.Vozilo" Multiplicity="0..1" />
+          <End Role="PutniNalog" Type="Self.PutniNalog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vozilo">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PutniNalog">
+              <PropertyRef Name="VoziloID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PutniNalo__Vozil__4D94879B">
+          <End Role="Vozilo" Type="Self.Vozilo" Multiplicity="0..1" />
+          <End Role="PutniNalog" Type="Self.PutniNalog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vozilo">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PutniNalog">
+              <PropertyRef Name="VoziloID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <!--Errors Found During Generation:
+warning 6035: The relationship 'FK__PutniNalo__Zapos__35BCFE0A' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
+        <Association Name="FK__PutniNalo__Zapos__35BCFE0A" />-->
+        <!--Errors Found During Generation:
+warning 6035: The relationship 'FK__PutniNalo__Zapos__36B12243' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
+        <Association Name="FK__PutniNalo__Zapos__36B12243" />-->
+        <!--Errors Found During Generation:
+warning 6035: The relationship 'FK__PutniNalo__Zapos__4E88ABD4' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
+        <Association Name="FK__PutniNalo__Zapos__4E88ABD4" />-->
+        <!--Errors Found During Generation:
+warning 6035: The relationship 'FK__PutniNalo__Zapos__4F7CD00D' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
+        <Association Name="FK__PutniNalo__Zapos__4F7CD00D" />-->
+        <!--Errors Found During Generation:
+warning 6035: The relationship 'FK__PutniNalo__Zapos__5070F446' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
+        <Association Name="FK__PutniNalo__Zapos__5070F446" />-->
+        <!--Errors Found During Generation:
+warning 6035: The relationship 'FK__PutniNalo__Zapos__5165187F' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
+        <Association Name="FK__PutniNalo__Zapos__5165187F" />-->
+        <Association Name="FK__Vozilo__MarkaVoz__4316F928">
+          <End Role="VoziloMarka" Type="Self.VoziloMarka" Multiplicity="0..1" />
+          <End Role="Vozilo" Type="Self.Vozilo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VoziloMarka">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Vozilo">
+              <PropertyRef Name="MarkaVozilaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Vozilo__StatusVo__440B1D61">
+          <End Role="VoziloStatus" Type="Self.VoziloStatus" Multiplicity="0..1" />
+          <End Role="Vozilo" Type="Self.Vozilo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VoziloStatus">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Vozilo">
+              <PropertyRef Name="StatusVozilaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Vozilo__TipVozil__45F365D3">
+          <End Role="VoziloTip" Type="Self.VoziloTip" Multiplicity="0..1" />
+          <End Role="Vozilo" Type="Self.Vozilo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VoziloTip">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Vozilo">
+              <PropertyRef Name="TipVozilaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetRoles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="sincDeliveryModelStoreContainer">
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="KorisnikTip" EntityType="Self.KorisnikTip" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Obavjestenje" EntityType="Self.Obavjestenje" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PutniNalog" EntityType="Self.PutniNalog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PutniNalogStatus" EntityType="Self.PutniNalogStatus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Vozilo" EntityType="Self.Vozilo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VoziloMarka" EntityType="Self.VoziloMarka" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VoziloMarkaTip" EntityType="Self.VoziloMarkaTip" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VoziloStatus" EntityType="Self.VoziloStatus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VoziloTip" EntityType="Self.VoziloTip" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__PutniNalo__Statu__48CFD27E" Association="Self.FK__PutniNalo__Statu__48CFD27E">
+            <End Role="PutniNalogStatus" EntitySet="PutniNalogStatus" />
+            <End Role="PutniNalog" EntitySet="PutniNalog" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PutniNalo__Statu__49C3F6B7" Association="Self.FK__PutniNalo__Statu__49C3F6B7">
+            <End Role="PutniNalogStatus" EntitySet="PutniNalogStatus" />
+            <End Role="PutniNalog" EntitySet="PutniNalog" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PutniNalo__Vozil__4CA06362" Association="Self.FK__PutniNalo__Vozil__4CA06362">
+            <End Role="Vozilo" EntitySet="Vozilo" />
+            <End Role="PutniNalog" EntitySet="PutniNalog" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PutniNalo__Vozil__4D94879B" Association="Self.FK__PutniNalo__Vozil__4D94879B">
+            <End Role="Vozilo" EntitySet="Vozilo" />
+            <End Role="PutniNalog" EntitySet="PutniNalog" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Vozilo__MarkaVoz__4316F928" Association="Self.FK__Vozilo__MarkaVoz__4316F928">
+            <End Role="VoziloMarka" EntitySet="VoziloMarka" />
+            <End Role="Vozilo" EntitySet="Vozilo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Vozilo__StatusVo__440B1D61" Association="Self.FK__Vozilo__StatusVo__440B1D61">
+            <End Role="VoziloStatus" EntitySet="VoziloStatus" />
+            <End Role="Vozilo" EntitySet="Vozilo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Vozilo__TipVozil__45F365D3" Association="Self.FK__Vozilo__TipVozil__45F365D3">
+            <End Role="VoziloTip" EntitySet="VoziloTip" />
+            <End Role="Vozilo" EntitySet="Vozilo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="sincDeliveryModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AspNetRole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Self.AspNetUserRoles" FromRole="AspNetRoles" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaim">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaims" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogin">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ProviderKey" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUser" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogins" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="KorisnikID" Type="Int32" Nullable="false" />
+          <Property Name="Ime" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Prezime" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="GradID" Type="Int32" />
+          <Property Name="DatumRodjenja" Type="DateTime" Precision="3" />
+          <Property Name="Telefon" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="ProfilnaSlika" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Opis" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="Aktivan" Type="Boolean" />
+          <Property Name="Spol" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+          <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="KorisnikTipicID" Type="Int32" />
+          <Property Name="KorisnikTipID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="AspNetUserClaims" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
+          <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
+          <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
+        </EntityType>
+        <EntityType Name="KorisnikTip">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Naziv" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Aktivan" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="PutniNalog">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Sifra" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="VoziloID" Type="Int32" />
+          <Property Name="VozacID" Type="Int32" />
+          <Property Name="PocetnaKilometraza" Type="Int32" />
+          <Property Name="KrajnjaKilometraza" Type="Int32" />
+          <Property Name="PotrosenoGoriva" Type="Double" />
+          <Property Name="ZaposlenikIzdaoID" Type="Int32" />
+          <Property Name="ZaposlenikZakljucioID" Type="Int32" />
+          <Property Name="StatusID" Type="Int32" />
+          <Property Name="Opis" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="DatumIVrijemeIzdavanja" Type="DateTime" Precision="3" />
+          <Property Name="DatumIVrijemeZakljucivanja" Type="DateTime" Precision="3" />
+          <Property Name="DatumIVrijemePolaska" Type="DateTime" Precision="3" />
+          <Property Name="DatumIVrijemeDolaska" Type="DateTime" Precision="3" />
+          <Property Name="Zavrseno" Type="Boolean" />
+          <Property Name="Norma" Type="Double" />
+          <Property Name="Aktivan" Type="Boolean" />
+          <Property Name="LokacijaPolazak" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="LokacijaOdrediste" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="PutniNalogStatu" Relationship="Self.FK__PutniNalo__Statu__48CFD27E" FromRole="PutniNalog" ToRole="PutniNalogStatus" />
+          <NavigationProperty Name="PutniNalogStatu1" Relationship="Self.FK__PutniNalo__Statu__49C3F6B7" FromRole="PutniNalog" ToRole="PutniNalogStatus" />
+          <NavigationProperty Name="Vozilo" Relationship="Self.FK__PutniNalo__Vozil__4CA06362" FromRole="PutniNalog" ToRole="Vozilo" />
+          <NavigationProperty Name="Vozilo1" Relationship="Self.FK__PutniNalo__Vozil__4D94879B" FromRole="PutniNalog" ToRole="Vozilo" />
+        </EntityType>
+        <EntityType Name="PutniNalogStatu">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Naziv" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Aktivan" Type="Boolean" />
+          <NavigationProperty Name="PutniNalogs" Relationship="Self.FK__PutniNalo__Statu__48CFD27E" FromRole="PutniNalogStatus" ToRole="PutniNalog" />
+          <NavigationProperty Name="PutniNalogs1" Relationship="Self.FK__PutniNalo__Statu__49C3F6B7" FromRole="PutniNalogStatus" ToRole="PutniNalog" />
+        </EntityType>
+        <EntityType Name="Vozilo">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Naziv" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="GarazniBroj" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="RegistarskiBroj" Type="String" MaxLength="9" FixedLength="false" Unicode="true" />
+          <Property Name="BrojSasije" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Kilometraza" Type="Int32" />
+          <Property Name="MarkaVozilaID" Type="Int32" />
+          <Property Name="TipVozilaID" Type="Int32" />
+          <Property Name="StatusVozilaID" Type="Int32" />
+          <Property Name="ProsjecnaPotrosnja" Type="Double" />
+          <Property Name="TrenutnaLokacijaX" Type="Double" />
+          <Property Name="TrenutnaLokacijaY" Type="Double" />
+          <Property Name="Aktivan" Type="Boolean" />
+          <NavigationProperty Name="PutniNalogs" Relationship="Self.FK__PutniNalo__Vozil__4CA06362" FromRole="Vozilo" ToRole="PutniNalog" />
+          <NavigationProperty Name="PutniNalogs1" Relationship="Self.FK__PutniNalo__Vozil__4D94879B" FromRole="Vozilo" ToRole="PutniNalog" />
+          <NavigationProperty Name="VoziloMarka" Relationship="Self.FK__Vozilo__MarkaVoz__4316F928" FromRole="Vozilo" ToRole="VoziloMarka" />
+          <NavigationProperty Name="VoziloStatu" Relationship="Self.FK__Vozilo__StatusVo__440B1D61" FromRole="Vozilo" ToRole="VoziloStatus" />
+          <NavigationProperty Name="VoziloTip" Relationship="Self.FK__Vozilo__TipVozil__45F365D3" FromRole="Vozilo" ToRole="VoziloTip" />
+        </EntityType>
+        <EntityType Name="VoziloMarka">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Naziv" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Aktivan" Type="Boolean" />
+          <NavigationProperty Name="Voziloes" Relationship="Self.FK__Vozilo__MarkaVoz__4316F928" FromRole="VoziloMarka" ToRole="Vozilo" />
+        </EntityType>
+        <EntityType Name="VoziloMarkaTip">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Naziv" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Aktivan" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="VoziloStatu">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Naziv" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Aktivan" Type="Boolean" />
+          <NavigationProperty Name="Voziloes" Relationship="Self.FK__Vozilo__StatusVo__440B1D61" FromRole="VoziloStatus" ToRole="Vozilo" />
+        </EntityType>
+        <EntityType Name="VoziloTip">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Naziv" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Aktivan" Type="Boolean" />
+          <NavigationProperty Name="Voziloes" Relationship="Self.FK__Vozilo__TipVozil__45F365D3" FromRole="VoziloTip" ToRole="Vozilo" />
+        </EntityType>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PutniNalo__Statu__48CFD27E">
+          <End Role="PutniNalogStatus" Type="Self.PutniNalogStatu" Multiplicity="0..1" />
+          <End Role="PutniNalog" Type="Self.PutniNalog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PutniNalogStatus">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PutniNalog">
+              <PropertyRef Name="StatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PutniNalo__Statu__49C3F6B7">
+          <End Role="PutniNalogStatus" Type="Self.PutniNalogStatu" Multiplicity="0..1" />
+          <End Role="PutniNalog" Type="Self.PutniNalog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PutniNalogStatus">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PutniNalog">
+              <PropertyRef Name="StatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PutniNalo__Vozil__4CA06362">
+          <End Role="Vozilo" Type="Self.Vozilo" Multiplicity="0..1" />
+          <End Role="PutniNalog" Type="Self.PutniNalog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vozilo">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PutniNalog">
+              <PropertyRef Name="VoziloID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PutniNalo__Vozil__4D94879B">
+          <End Role="Vozilo" Type="Self.Vozilo" Multiplicity="0..1" />
+          <End Role="PutniNalog" Type="Self.PutniNalog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vozilo">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PutniNalog">
+              <PropertyRef Name="VoziloID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Vozilo__MarkaVoz__4316F928">
+          <End Role="VoziloMarka" Type="Self.VoziloMarka" Multiplicity="0..1" />
+          <End Role="Vozilo" Type="Self.Vozilo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VoziloMarka">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Vozilo">
+              <PropertyRef Name="MarkaVozilaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Vozilo__StatusVo__440B1D61">
+          <End Role="VoziloStatus" Type="Self.VoziloStatu" Multiplicity="0..1" />
+          <End Role="Vozilo" Type="Self.Vozilo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VoziloStatus">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Vozilo">
+              <PropertyRef Name="StatusVozilaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Vozilo__TipVozil__45F365D3">
+          <End Role="VoziloTip" Type="Self.VoziloTip" Multiplicity="0..1" />
+          <End Role="Vozilo" Type="Self.Vozilo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VoziloTip">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Vozilo">
+              <PropertyRef Name="TipVozilaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AspNetUserRoles">
+          <End Role="AspNetRoles" Type="Self.AspNetRole" Multiplicity="*" />
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="sincDeliveryEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRole" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaim" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogin" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUser" />
+          <EntitySet Name="KorisnikTips" EntityType="Self.KorisnikTip" />
+          <EntitySet Name="PutniNalogs" EntityType="Self.PutniNalog" />
+          <EntitySet Name="PutniNalogStatus" EntityType="Self.PutniNalogStatu" />
+          <EntitySet Name="Voziloes" EntityType="Self.Vozilo" />
+          <EntitySet Name="VoziloMarkas" EntityType="Self.VoziloMarka" />
+          <EntitySet Name="VoziloMarkaTips" EntityType="Self.VoziloMarkaTip" />
+          <EntitySet Name="VoziloStatus" EntityType="Self.VoziloStatu" />
+          <EntitySet Name="VoziloTips" EntityType="Self.VoziloTip" />
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PutniNalo__Statu__48CFD27E" Association="Self.FK__PutniNalo__Statu__48CFD27E">
+            <End Role="PutniNalogStatus" EntitySet="PutniNalogStatus" />
+            <End Role="PutniNalog" EntitySet="PutniNalogs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PutniNalo__Statu__49C3F6B7" Association="Self.FK__PutniNalo__Statu__49C3F6B7">
+            <End Role="PutniNalogStatus" EntitySet="PutniNalogStatus" />
+            <End Role="PutniNalog" EntitySet="PutniNalogs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PutniNalo__Vozil__4CA06362" Association="Self.FK__PutniNalo__Vozil__4CA06362">
+            <End Role="Vozilo" EntitySet="Voziloes" />
+            <End Role="PutniNalog" EntitySet="PutniNalogs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PutniNalo__Vozil__4D94879B" Association="Self.FK__PutniNalo__Vozil__4D94879B">
+            <End Role="Vozilo" EntitySet="Voziloes" />
+            <End Role="PutniNalog" EntitySet="PutniNalogs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Vozilo__MarkaVoz__4316F928" Association="Self.FK__Vozilo__MarkaVoz__4316F928">
+            <End Role="VoziloMarka" EntitySet="VoziloMarkas" />
+            <End Role="Vozilo" EntitySet="Voziloes" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Vozilo__StatusVo__440B1D61" Association="Self.FK__Vozilo__StatusVo__440B1D61">
+            <End Role="VoziloStatus" EntitySet="VoziloStatus" />
+            <End Role="Vozilo" EntitySet="Voziloes" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Vozilo__TipVozil__45F365D3" Association="Self.FK__Vozilo__TipVozil__45F365D3">
+            <End Role="VoziloTip" EntitySet="VoziloTips" />
+            <End Role="Vozilo" EntitySet="Voziloes" />
+          </AssociationSet>
+          <AssociationSet Name="AspNetUserRoles" Association="Self.AspNetUserRoles">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+          </AssociationSet>
+          <EntitySet Name="Obavjestenjes" EntityType="sincDeliveryModel.Obavjestenje" />
+        </EntityContainer>
+        <EntityType Name="Obavjestenje">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Tekst" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Lokacija" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="Naslov" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Aktivan" Type="Boolean" />
+          <Property Name="DatumIVrijemeKreiranja" Type="DateTime" Precision="3" />
+          <Property Name="IzdaoObavjestenjeID" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="VozacID" Type="Int32" />
+          <Property Name="NalogID" Type="Int32" />
+          <Property Name="PlaceID" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="sincDeliveryModelStoreContainer" CdmEntityContainer="sincDeliveryEntities1">
+          <EntitySetMapping Name="AspNetRoles">
+            <EntityTypeMapping TypeName="sincDeliveryModel.AspNetRole">
+              <MappingFragment StoreEntitySet="AspNetRoles">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserClaims">
+            <EntityTypeMapping TypeName="sincDeliveryModel.AspNetUserClaim">
+              <MappingFragment StoreEntitySet="AspNetUserClaims">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+                <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserLogins">
+            <EntityTypeMapping TypeName="sincDeliveryModel.AspNetUserLogin">
+              <MappingFragment StoreEntitySet="AspNetUserLogins">
+                <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+                <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUsers">
+            <EntityTypeMapping TypeName="sincDeliveryModel.AspNetUser">
+              <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="KorisnikID" ColumnName="KorisnikID" />
+                <ScalarProperty Name="Ime" ColumnName="Ime" />
+                <ScalarProperty Name="Prezime" ColumnName="Prezime" />
+                <ScalarProperty Name="GradID" ColumnName="GradID" />
+                <ScalarProperty Name="DatumRodjenja" ColumnName="DatumRodjenja" />
+                <ScalarProperty Name="Telefon" ColumnName="Telefon" />
+                <ScalarProperty Name="ProfilnaSlika" ColumnName="ProfilnaSlika" />
+                <ScalarProperty Name="Opis" ColumnName="Opis" />
+                <ScalarProperty Name="Aktivan" ColumnName="Aktivan" />
+                <ScalarProperty Name="Spol" ColumnName="Spol" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="KorisnikTipicID" ColumnName="KorisnikTipicID" />
+                <ScalarProperty Name="KorisnikTipID" ColumnName="KorisnikTipID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="KorisnikTips">
+            <EntityTypeMapping TypeName="sincDeliveryModel.KorisnikTip">
+              <MappingFragment StoreEntitySet="KorisnikTip">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+                <ScalarProperty Name="Aktivan" ColumnName="Aktivan" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PutniNalogs">
+            <EntityTypeMapping TypeName="sincDeliveryModel.PutniNalog">
+              <MappingFragment StoreEntitySet="PutniNalog">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Sifra" ColumnName="Sifra" />
+                <ScalarProperty Name="VoziloID" ColumnName="VoziloID" />
+                <ScalarProperty Name="VozacID" ColumnName="VozacID" />
+                <ScalarProperty Name="PocetnaKilometraza" ColumnName="PocetnaKilometraza" />
+                <ScalarProperty Name="KrajnjaKilometraza" ColumnName="KrajnjaKilometraza" />
+                <ScalarProperty Name="PotrosenoGoriva" ColumnName="PotrosenoGoriva" />
+                <ScalarProperty Name="ZaposlenikIzdaoID" ColumnName="ZaposlenikIzdaoID" />
+                <ScalarProperty Name="ZaposlenikZakljucioID" ColumnName="ZaposlenikZakljucioID" />
+                <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+                <ScalarProperty Name="Opis" ColumnName="Opis" />
+                <ScalarProperty Name="DatumIVrijemeIzdavanja" ColumnName="DatumIVrijemeIzdavanja" />
+                <ScalarProperty Name="DatumIVrijemeZakljucivanja" ColumnName="DatumIVrijemeZakljucivanja" />
+                <ScalarProperty Name="DatumIVrijemePolaska" ColumnName="DatumIVrijemePolaska" />
+                <ScalarProperty Name="DatumIVrijemeDolaska" ColumnName="DatumIVrijemeDolaska" />
+                <ScalarProperty Name="Zavrseno" ColumnName="Zavrseno" />
+                <ScalarProperty Name="Norma" ColumnName="Norma" />
+                <ScalarProperty Name="Aktivan" ColumnName="Aktivan" />
+                <ScalarProperty Name="LokacijaPolazak" ColumnName="LokacijaPolazak" />
+                <ScalarProperty Name="LokacijaOdrediste" ColumnName="LokacijaOdrediste" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PutniNalogStatus">
+            <EntityTypeMapping TypeName="sincDeliveryModel.PutniNalogStatu">
+              <MappingFragment StoreEntitySet="PutniNalogStatus">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+                <ScalarProperty Name="Aktivan" ColumnName="Aktivan" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Voziloes">
+            <EntityTypeMapping TypeName="sincDeliveryModel.Vozilo">
+              <MappingFragment StoreEntitySet="Vozilo">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+                <ScalarProperty Name="GarazniBroj" ColumnName="GarazniBroj" />
+                <ScalarProperty Name="RegistarskiBroj" ColumnName="RegistarskiBroj" />
+                <ScalarProperty Name="BrojSasije" ColumnName="BrojSasije" />
+                <ScalarProperty Name="Kilometraza" ColumnName="Kilometraza" />
+                <ScalarProperty Name="MarkaVozilaID" ColumnName="MarkaVozilaID" />
+                <ScalarProperty Name="TipVozilaID" ColumnName="TipVozilaID" />
+                <ScalarProperty Name="StatusVozilaID" ColumnName="StatusVozilaID" />
+                <ScalarProperty Name="ProsjecnaPotrosnja" ColumnName="ProsjecnaPotrosnja" />
+                <ScalarProperty Name="TrenutnaLokacijaX" ColumnName="TrenutnaLokacijaX" />
+                <ScalarProperty Name="TrenutnaLokacijaY" ColumnName="TrenutnaLokacijaY" />
+                <ScalarProperty Name="Aktivan" ColumnName="Aktivan" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VoziloMarkas">
+            <EntityTypeMapping TypeName="sincDeliveryModel.VoziloMarka">
+              <MappingFragment StoreEntitySet="VoziloMarka">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+                <ScalarProperty Name="Aktivan" ColumnName="Aktivan" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VoziloMarkaTips">
+            <EntityTypeMapping TypeName="sincDeliveryModel.VoziloMarkaTip">
+              <MappingFragment StoreEntitySet="VoziloMarkaTip">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+                <ScalarProperty Name="Aktivan" ColumnName="Aktivan" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VoziloStatus">
+            <EntityTypeMapping TypeName="sincDeliveryModel.VoziloStatu">
+              <MappingFragment StoreEntitySet="VoziloStatus">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+                <ScalarProperty Name="Aktivan" ColumnName="Aktivan" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VoziloTips">
+            <EntityTypeMapping TypeName="sincDeliveryModel.VoziloTip">
+              <MappingFragment StoreEntitySet="VoziloTip">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+                <ScalarProperty Name="Aktivan" ColumnName="Aktivan" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="AspNetUserRoles" TypeName="sincDeliveryModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+            <EndProperty Name="AspNetRoles">
+              <ScalarProperty Name="Id" ColumnName="RoleId" />
+            </EndProperty>
+            <EndProperty Name="AspNetUsers">
+              <ScalarProperty Name="Id" ColumnName="UserId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <EntitySetMapping Name="Obavjestenjes">
+            <EntityTypeMapping TypeName="sincDeliveryModel.Obavjestenje">
+              <MappingFragment StoreEntitySet="Obavjestenje">
+                <ScalarProperty Name="PlaceID" ColumnName="PlaceID" />
+                <ScalarProperty Name="NalogID" ColumnName="NalogID" />
+                <ScalarProperty Name="VozacID" ColumnName="VozacID" />
+                <ScalarProperty Name="IzdaoObavjestenjeID" ColumnName="IzdaoObavjestenjeID" />
+                <ScalarProperty Name="DatumIVrijemeKreiranja" ColumnName="DatumIVrijemeKreiranja" />
+                <ScalarProperty Name="Aktivan" ColumnName="Aktivan" />
+                <ScalarProperty Name="Naslov" ColumnName="Naslov" />
+                <ScalarProperty Name="Lokacija" ColumnName="Lokacija" />
+                <ScalarProperty Name="Tekst" ColumnName="Tekst" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

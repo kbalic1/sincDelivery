@@ -1,0 +1,5 @@
+c:\users\kerim balic\documents\visual studio 2015\Projects\sincDelivery\sincDelivery.BDO\bin\Debug\sincDelivery.BDO.dll
+c:\users\kerim balic\documents\visual studio 2015\Projects\sincDelivery\sincDelivery.BDO\bin\Debug\sincDelivery.BDO.pdb
+c:\users\kerim balic\documents\visual studio 2015\Projects\sincDelivery\sincDelivery.BDO\obj\Debug\sincDelivery.BDO.dll
+c:\users\kerim balic\documents\visual studio 2015\Projects\sincDelivery\sincDelivery.BDO\obj\Debug\sincDelivery.BDO.pdb
+C:\Users\Kerim Balic\Documents\Visual Studio 2015\Projects\sincDelivery\sincDelivery.BDO\obj\Debug\sincDelivery.BDO.csprojResolveAssemblyReference.cache

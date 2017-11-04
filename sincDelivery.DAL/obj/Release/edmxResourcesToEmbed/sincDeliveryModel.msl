@@ -1,0 +1,185 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="sincDeliveryModelStoreContainer" CdmEntityContainer="sincDeliveryEntities1">
+    <EntitySetMapping Name="AspNetRoles">
+      <EntityTypeMapping TypeName="sincDeliveryModel.AspNetRole">
+        <MappingFragment StoreEntitySet="AspNetRoles">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetUserClaims">
+      <EntityTypeMapping TypeName="sincDeliveryModel.AspNetUserClaim">
+        <MappingFragment StoreEntitySet="AspNetUserClaims">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+          <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetUserLogins">
+      <EntityTypeMapping TypeName="sincDeliveryModel.AspNetUserLogin">
+        <MappingFragment StoreEntitySet="AspNetUserLogins">
+          <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+          <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetUsers">
+      <EntityTypeMapping TypeName="sincDeliveryModel.AspNetUser">
+        <MappingFragment StoreEntitySet="AspNetUsers">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="KorisnikID" ColumnName="KorisnikID" />
+          <ScalarProperty Name="Ime" ColumnName="Ime" />
+          <ScalarProperty Name="Prezime" ColumnName="Prezime" />
+          <ScalarProperty Name="GradID" ColumnName="GradID" />
+          <ScalarProperty Name="DatumRodjenja" ColumnName="DatumRodjenja" />
+          <ScalarProperty Name="Telefon" ColumnName="Telefon" />
+          <ScalarProperty Name="ProfilnaSlika" ColumnName="ProfilnaSlika" />
+          <ScalarProperty Name="Opis" ColumnName="Opis" />
+          <ScalarProperty Name="Aktivan" ColumnName="Aktivan" />
+          <ScalarProperty Name="Spol" ColumnName="Spol" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+          <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+          <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+          <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+          <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+          <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+          <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="KorisnikTipicID" ColumnName="KorisnikTipicID" />
+          <ScalarProperty Name="KorisnikTipID" ColumnName="KorisnikTipID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="KorisnikTips">
+      <EntityTypeMapping TypeName="sincDeliveryModel.KorisnikTip">
+        <MappingFragment StoreEntitySet="KorisnikTip">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+          <ScalarProperty Name="Aktivan" ColumnName="Aktivan" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PutniNalogs">
+      <EntityTypeMapping TypeName="sincDeliveryModel.PutniNalog">
+        <MappingFragment StoreEntitySet="PutniNalog">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Sifra" ColumnName="Sifra" />
+          <ScalarProperty Name="VoziloID" ColumnName="VoziloID" />
+          <ScalarProperty Name="VozacID" ColumnName="VozacID" />
+          <ScalarProperty Name="PocetnaKilometraza" ColumnName="PocetnaKilometraza" />
+          <ScalarProperty Name="KrajnjaKilometraza" ColumnName="KrajnjaKilometraza" />
+          <ScalarProperty Name="PotrosenoGoriva" ColumnName="PotrosenoGoriva" />
+          <ScalarProperty Name="ZaposlenikIzdaoID" ColumnName="ZaposlenikIzdaoID" />
+          <ScalarProperty Name="ZaposlenikZakljucioID" ColumnName="ZaposlenikZakljucioID" />
+          <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+          <ScalarProperty Name="Opis" ColumnName="Opis" />
+          <ScalarProperty Name="DatumIVrijemeIzdavanja" ColumnName="DatumIVrijemeIzdavanja" />
+          <ScalarProperty Name="DatumIVrijemeZakljucivanja" ColumnName="DatumIVrijemeZakljucivanja" />
+          <ScalarProperty Name="DatumIVrijemePolaska" ColumnName="DatumIVrijemePolaska" />
+          <ScalarProperty Name="DatumIVrijemeDolaska" ColumnName="DatumIVrijemeDolaska" />
+          <ScalarProperty Name="Zavrseno" ColumnName="Zavrseno" />
+          <ScalarProperty Name="Norma" ColumnName="Norma" />
+          <ScalarProperty Name="Aktivan" ColumnName="Aktivan" />
+          <ScalarProperty Name="LokacijaPolazak" ColumnName="LokacijaPolazak" />
+          <ScalarProperty Name="LokacijaOdrediste" ColumnName="LokacijaOdrediste" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PutniNalogStatus">
+      <EntityTypeMapping TypeName="sincDeliveryModel.PutniNalogStatu">
+        <MappingFragment StoreEntitySet="PutniNalogStatus">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+          <ScalarProperty Name="Aktivan" ColumnName="Aktivan" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Voziloes">
+      <EntityTypeMapping TypeName="sincDeliveryModel.Vozilo">
+        <MappingFragment StoreEntitySet="Vozilo">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+          <ScalarProperty Name="GarazniBroj" ColumnName="GarazniBroj" />
+          <ScalarProperty Name="RegistarskiBroj" ColumnName="RegistarskiBroj" />
+          <ScalarProperty Name="BrojSasije" ColumnName="BrojSasije" />
+          <ScalarProperty Name="Kilometraza" ColumnName="Kilometraza" />
+          <ScalarProperty Name="MarkaVozilaID" ColumnName="MarkaVozilaID" />
+          <ScalarProperty Name="TipVozilaID" ColumnName="TipVozilaID" />
+          <ScalarProperty Name="StatusVozilaID" ColumnName="StatusVozilaID" />
+          <ScalarProperty Name="ProsjecnaPotrosnja" ColumnName="ProsjecnaPotrosnja" />
+          <ScalarProperty Name="TrenutnaLokacijaX" ColumnName="TrenutnaLokacijaX" />
+          <ScalarProperty Name="TrenutnaLokacijaY" ColumnName="TrenutnaLokacijaY" />
+          <ScalarProperty Name="Aktivan" ColumnName="Aktivan" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VoziloMarkas">
+      <EntityTypeMapping TypeName="sincDeliveryModel.VoziloMarka">
+        <MappingFragment StoreEntitySet="VoziloMarka">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+          <ScalarProperty Name="Aktivan" ColumnName="Aktivan" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VoziloMarkaTips">
+      <EntityTypeMapping TypeName="sincDeliveryModel.VoziloMarkaTip">
+        <MappingFragment StoreEntitySet="VoziloMarkaTip">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+          <ScalarProperty Name="Aktivan" ColumnName="Aktivan" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VoziloStatus">
+      <EntityTypeMapping TypeName="sincDeliveryModel.VoziloStatu">
+        <MappingFragment StoreEntitySet="VoziloStatus">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+          <ScalarProperty Name="Aktivan" ColumnName="Aktivan" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VoziloTips">
+      <EntityTypeMapping TypeName="sincDeliveryModel.VoziloTip">
+        <MappingFragment StoreEntitySet="VoziloTip">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+          <ScalarProperty Name="Aktivan" ColumnName="Aktivan" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="AspNetUserRoles" TypeName="sincDeliveryModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+      <EndProperty Name="AspNetRoles">
+        <ScalarProperty Name="Id" ColumnName="RoleId" />
+      </EndProperty>
+      <EndProperty Name="AspNetUsers">
+        <ScalarProperty Name="Id" ColumnName="UserId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <EntitySetMapping Name="Obavjestenjes">
+      <EntityTypeMapping TypeName="sincDeliveryModel.Obavjestenje">
+        <MappingFragment StoreEntitySet="Obavjestenje">
+          <ScalarProperty Name="PlaceID" ColumnName="PlaceID" />
+          <ScalarProperty Name="NalogID" ColumnName="NalogID" />
+          <ScalarProperty Name="VozacID" ColumnName="VozacID" />
+          <ScalarProperty Name="IzdaoObavjestenjeID" ColumnName="IzdaoObavjestenjeID" />
+          <ScalarProperty Name="DatumIVrijemeKreiranja" ColumnName="DatumIVrijemeKreiranja" />
+          <ScalarProperty Name="Aktivan" ColumnName="Aktivan" />
+          <ScalarProperty Name="Naslov" ColumnName="Naslov" />
+          <ScalarProperty Name="Lokacija" ColumnName="Lokacija" />
+          <ScalarProperty Name="Tekst" ColumnName="Tekst" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

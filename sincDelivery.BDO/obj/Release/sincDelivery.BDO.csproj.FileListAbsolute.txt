@@ -1,0 +1,4 @@
+C:\Users\Kerim Balic\documents\visual studio 2015\Projects\sincDelivery\sincDelivery.BDO\bin\Release\sincDelivery.BDO.dll
+C:\Users\Kerim Balic\documents\visual studio 2015\Projects\sincDelivery\sincDelivery.BDO\bin\Release\sincDelivery.BDO.pdb
+C:\Users\Kerim Balic\documents\visual studio 2015\Projects\sincDelivery\sincDelivery.BDO\obj\Release\sincDelivery.BDO.dll
+C:\Users\Kerim Balic\documents\visual studio 2015\Projects\sincDelivery\sincDelivery.BDO\obj\Release\sincDelivery.BDO.pdb

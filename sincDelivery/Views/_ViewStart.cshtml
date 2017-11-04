@@ -1,0 +1,10 @@
+﻿
+@if(User.Identity.Name=="admin@sync.com")
+{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+else
+{
+    Layout = "~/Views/Shared/_LayoutVozac.cshtml";
+}

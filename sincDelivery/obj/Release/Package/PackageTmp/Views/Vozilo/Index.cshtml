@@ -1,0 +1,111 @@
+﻿@model PagedList.IPagedList<sincDelivery.BDO.Vozilo.VoziloBDO>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Panel vozila";
+}
+
+<div id="wrapper">
+    <!-- Navigation -->
+
+    <div id="page-wrapper">
+     
+        <div class="text-center">
+            <h2>Pregled vozila</h2>
+        </div>
+
+        <div>
+            @Html.ActionLink("Dodaj novo vozilo", "DodajVozilo", "Vozilo")
+
+        </div>
+        <div class="row">
+
+            <div class="col-md-2 col-xs-12">
+            </div>
+
+
+                <div class="col-md-8 col-xs-12">
+
+
+                    <table class="table table-striped">
+                        <tr>
+                            <th>
+                                Naziv
+                            </th>
+                            <th>
+                                Marka vozila
+                            </th>
+                            <th>
+                                Status vozila
+                            </th>
+                            <th>
+                                Grad
+                            </th>
+                            <th>
+                                Akcija
+                            </th>
+                        </tr>
+
+                        @foreach (var x in Model)
+            {
+                            <tr>
+                                <td>
+                                    @x.Naziv
+                                </td>
+                                <td>
+                                    @x.GarazniBroj
+                                </td>
+                                <td>
+                                    @x.RegistarskiBroj
+                                </td>
+                                <td>
+                                    @x.BrojSasije
+                                </td>
+
+                                <td>
+                                    <a href="javascript:obrisi(@x.ID)" class="btn btn-danger btn-sm">
+                                        <span class="glyphicon glyphicon-trash"></span>
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </table>
+                </div>
+
+            <div class="col-md-2 col-xs-12">
+            </div>
+            </div>
+</div>
+    </div>
+
+
+
+        <script>
+
+
+            function obrisi(id) {
+
+                if (confirm('Da li ste sigurni da želite obrisati vozilo')) {
+
+                    $.ajax({
+                        type: "GET",
+                        url: '@Url.Action("ObrisiVozilo", "Vozilo")',
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        traditional: true,
+                        data: { voziloID: id },
+                        success: function (data) {
+
+                            alert("Uspjesno ste obrisali vozilo");
+                            location.reload();
+
+                        },
+                        error: function (data) {
+
+                        }
+                    })
+                } else {
+                    // Do nothing!
+                }
+
+            }
+        </script>

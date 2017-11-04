@@ -1,0 +1,98 @@
+﻿@model sincDelivery.BDO.Korisnik.KorisnikBDO
+@{
+    ViewBag.Title = "DodajVozaca";
+}
+
+<div id="wrapper">
+    <!-- Navigation -->
+
+    <div id="page-wrapper">
+
+        <h2>Dodaj novog vozaca</h2>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+                <div class="row">
+
+                    <div class="col-xs-10 col-md-10">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Ime, new { @class = "col-md-5 control-label" })
+
+                            <div class="col-md-7">
+                                @Html.TextBoxFor(model => model.Ime, "", new { @class = "form-control" })
+                            </div>
+                            @Html.ValidationMessageFor(model => model.Ime, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Prezime, new { @class = "col-md-5 control-label" })
+
+                            <div class="col-md-7">
+                                @Html.TextBoxFor(model => model.Prezime, "", new { @class = "form-control" })
+                            </div>
+                            @Html.ValidationMessageFor(model => model.Prezime, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Telefon, new { @class = "col-md-5 control-label" })
+
+                            <div class="col-md-7">
+                                @Html.TextBoxFor(model => model.Telefon, "", new { @class = "form-control" })
+                            </div>
+                            @Html.ValidationMessageFor(model => model.Telefon, "", new { @class = "text-danger" })
+                        </div>
+
+
+                        <div class="form-group">
+                            <div class="col-md-5 control-label">
+                                Spol
+                            </div>
+                            <div class="col-md-7">
+
+                                <select class="noRadius form-control" id="Spol" name="Spol">
+                                    <option value="Ž">Ženski</option>
+                                    <option value="M">Muški</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.UserName, new { @class = "col-md-5 control-label" })
+
+                            <div class="col-md-7">
+                                @Html.TextBoxFor(model => model.UserName, "", new { @class = "form-control" })
+                            </div>
+                            @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="form-group">
+                            @Html.Label("Password", new { @class = "col-md-5 control-label" })
+
+                            <div class="col-md-7">
+                                @Html.PasswordFor(model => model.PasswordHash,  new { @class = "form-control" })
+                            </div>
+                            @Html.ValidationMessageFor(model => model.PasswordHash, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group marginTop10">
+                            <div class="col-md-offset-5 col-md-7">
+                                <input type="submit" value="Dodaj vozaca" class="btn btn-default" />
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+            </div>
+        }
+
+    </div>
+</div>

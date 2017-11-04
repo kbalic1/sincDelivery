@@ -1,0 +1,103 @@
+﻿@model PagedList.IPagedList<sincDelivery.BDO.Obavjestenje.ObavjestenjeBDO>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Panel vozaca";
+}
+
+<div id="wrapper">
+
+    <div id="page-wrapper">
+
+        <h2 class="text-center naslovNaloga">Pregled aktivnih obavjestenja</h2>
+
+        @if (Model.Count != 0)
+        {
+            foreach (var x in Model)
+            {
+
+                <div class="col-sm-4 col-xs-6">
+                    <div class="pregledNaloga">
+                        <h4 class="text-center">@x.Naslov</h4>
+                        <div class="pro-bref fix">
+                            <div class="row">
+                                @*<div class="col-md-1 col-sm-1"></div>*@
+                                <div class="col-md-12 col-sm-12">
+                                    <div class="pro-ratting float-left">
+                                        <span><b>Lokacija:</b></span>
+                                        @x.LokacijaFull
+                                    </div>
+
+                                    @*<div class="pro-price float-right">
+                                            <span id="likeNumber">@x.BrojLikeova</span>&nbsp;<span>omiljenih</span>
+                                        </div>*@
+                                </div>
+                                @*<div class="col-md-2 col-sm-2"></div>*@
+                            </div>
+                            @*<a class="pro-name" href="product-details.html">@x.Naziv</a>*@
+                            @*<div class="pro-ratting float-left">
+                                    <span>@x.GradNaziv</span>
+                                </div>*@
+
+
+                            <div class="pro-price float-left"><span class="new"><b>Vrijeme obavijesti:</b> </span>@x.DatumIVrijemeKreiranja   </div>
+
+                            <div class="pro-price float-right dugme">
+                                <a href="javascript:obrisi(@x.ID)" class="btn btn-danger btn-sm">
+                                    <span class="glyphicon glyphicon-trash"></span>
+                                </a>
+                                @*<a href="javascript:otvoriObavjestenje(@x.ID)"><span class="glyphicon glyphicon-arrow-right pull-right"></span></a>*@
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            }
+        }
+    </div>
+</div>
+
+
+
+<script>
+
+    function otvoriNalog(nalogID) {
+
+        // window.location.href = "../Home/Proizvod/"+artikalID;
+
+        //KrpiceMain.StartLoading();
+        window.location.href = "/PutniNalog/Nalog/?NalogID=" + nalogID;
+
+    }
+</script>
+
+<script>
+
+
+    function obrisiObavjestenje(id) {
+
+                if (confirm('Da li ste sigurni da želite obrisati obavještenje')) {
+
+                    $.ajax({
+                        type: "GET",
+                        url: '@Url.Action("ObrisiObavjestenje", "Obavjestenje")',
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        traditional: true,
+                        data: { obavjestenjeID: id },
+                        success: function (data) {
+
+                            alert("Uspjesno ste obrisali obavjestenje");
+                            location.reload();
+
+                        },
+                        error: function (data) {
+
+                        }
+                    })
+                } else {
+                    // Do nothing!
+                }
+
+            }
+</script>
