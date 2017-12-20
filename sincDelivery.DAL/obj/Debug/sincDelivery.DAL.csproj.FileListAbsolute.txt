@@ -21,3 +21,25 @@ c:\users\kerim balic\documents\visual studio 2015\Projects\sincDelivery\sincDeli
 c:\users\kerim balic\documents\visual studio 2015\Projects\sincDelivery\sincDelivery.DAL\bin\Debug\System.Web.WebPages.Razor.xml
 c:\users\kerim balic\documents\visual studio 2015\Projects\sincDelivery\sincDelivery.DAL\bin\Debug\System.Web.WebPages.xml
 c:\users\kerim balic\documents\visual studio 2015\Projects\sincDelivery\sincDelivery.DAL\bin\Debug\System.Web.WebPages.Deployment.xml
+C:\Users\amarba\Documents\ETF\IPMIS\Project\sincDelivery\sincDelivery.DAL\bin\Debug\sincDelivery.DAL.dll.config
+C:\Users\amarba\Documents\ETF\IPMIS\Project\sincDelivery\sincDelivery.DAL\bin\Debug\sincDelivery.DAL.dll
+C:\Users\amarba\Documents\ETF\IPMIS\Project\sincDelivery\sincDelivery.DAL\bin\Debug\sincDelivery.DAL.pdb
+C:\Users\amarba\Documents\ETF\IPMIS\Project\sincDelivery\sincDelivery.DAL\bin\Debug\EntityFramework.dll
+C:\Users\amarba\Documents\ETF\IPMIS\Project\sincDelivery\sincDelivery.DAL\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\amarba\Documents\ETF\IPMIS\Project\sincDelivery\sincDelivery.DAL\bin\Debug\sincDelivery.BDO.dll
+C:\Users\amarba\Documents\ETF\IPMIS\Project\sincDelivery\sincDelivery.DAL\bin\Debug\System.Web.Razor.dll
+C:\Users\amarba\Documents\ETF\IPMIS\Project\sincDelivery\sincDelivery.DAL\bin\Debug\System.Web.WebPages.Razor.dll
+C:\Users\amarba\Documents\ETF\IPMIS\Project\sincDelivery\sincDelivery.DAL\bin\Debug\System.Web.WebPages.dll
+C:\Users\amarba\Documents\ETF\IPMIS\Project\sincDelivery\sincDelivery.DAL\bin\Debug\Microsoft.Web.Infrastructure.dll
+C:\Users\amarba\Documents\ETF\IPMIS\Project\sincDelivery\sincDelivery.DAL\bin\Debug\System.Web.WebPages.Deployment.dll
+C:\Users\amarba\Documents\ETF\IPMIS\Project\sincDelivery\sincDelivery.DAL\bin\Debug\sincDelivery.BDO.pdb
+C:\Users\amarba\Documents\ETF\IPMIS\Project\sincDelivery\sincDelivery.DAL\bin\Debug\EntityFramework.xml
+C:\Users\amarba\Documents\ETF\IPMIS\Project\sincDelivery\sincDelivery.DAL\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\amarba\Documents\ETF\IPMIS\Project\sincDelivery\sincDelivery.DAL\bin\Debug\System.Web.Razor.xml
+C:\Users\amarba\Documents\ETF\IPMIS\Project\sincDelivery\sincDelivery.DAL\bin\Debug\System.Web.WebPages.Razor.xml
+C:\Users\amarba\Documents\ETF\IPMIS\Project\sincDelivery\sincDelivery.DAL\bin\Debug\System.Web.WebPages.xml
+C:\Users\amarba\Documents\ETF\IPMIS\Project\sincDelivery\sincDelivery.DAL\bin\Debug\System.Web.WebPages.Deployment.xml
+C:\Users\amarba\Documents\ETF\IPMIS\Project\sincDelivery\sincDelivery.DAL\obj\Debug\sincDelivery.DAL.csprojResolveAssemblyReference.cache
+C:\Users\amarba\Documents\ETF\IPMIS\Project\sincDelivery\sincDelivery.DAL\obj\Debug\sincDelivery.DAL.csproj.CoreCompileInputs.cache
+C:\Users\amarba\Documents\ETF\IPMIS\Project\sincDelivery\sincDelivery.DAL\obj\Debug\sincDelivery.DAL.dll
+C:\Users\amarba\Documents\ETF\IPMIS\Project\sincDelivery\sincDelivery.DAL\obj\Debug\sincDelivery.DAL.pdb

@@ -1,6 +1,8 @@
-﻿using PagedList;
+﻿using Microsoft.AspNet.SignalR;
+using PagedList;
 using sincDelivery.BDO.Obavjestenje;
 using sincDelivery.DAL.UnitsOfWork;
+using sincDelivery.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +17,6 @@ namespace sincDelivery.Controllers
         // GET: Obavjestenje
         public ActionResult Index(int? page)
         {
-
             if (page == null)
             {
                 page = 1;
@@ -28,7 +29,6 @@ namespace sincDelivery.Controllers
 
         public ActionResult KreirajNovoObavjestenje()
         {
-
             ViewBag.Vozaci = uow.KorisnikRepository.DajSelectListu();
             ViewBag.Nalozi = uow.PutniNalogRepository.DajSelectListu();
             return View();
@@ -46,6 +46,8 @@ namespace sincDelivery.Controllers
 
             uow.ObavjestenjeRepository.DodajObavjestenje(obavjestenjeBDO);
 
+            var context = GlobalHost.ConnectionManager.GetHubContext<NotificationHub>();
+            context.Clients.All.SendNotification("Notification");
 
             return RedirectToAction("Index");
         }
