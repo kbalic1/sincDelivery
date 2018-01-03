@@ -58,6 +58,9 @@ namespace sincDelivery.Controllers
 
             uow.ObavjestenjeRepository.ObavjestenjektivanFalse(obavjestenjeID);
 
+            var context = GlobalHost.ConnectionManager.GetHubContext<NotificationHub>();
+            context.Clients.All.SendNotification("Notification");
+
             return Json(true, JsonRequestBehavior.AllowGet);
         }
     }

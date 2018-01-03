@@ -1,6 +1,8 @@
-﻿using PagedList;
+﻿using Microsoft.AspNet.SignalR;
+using PagedList;
 using sincDelivery.BDO.PutniNalog;
 using sincDelivery.DAL.UnitsOfWork;
+using sincDelivery.Helpers;
 using sincDelivery.Models;
 using System;
 using System.Collections.Generic;
@@ -67,7 +69,8 @@ namespace sincDelivery.Controllers
 
             uow.PutniNalogRepository.DodajPutniNalog(putniNalogBDO);
 
-            
+            var context = GlobalHost.ConnectionManager.GetHubContext<NotificationHub>();
+            context.Clients.All.SendNotification("Order");
 
             return RedirectToAction("Index");
         }

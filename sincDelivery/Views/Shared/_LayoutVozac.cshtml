@@ -241,7 +241,7 @@
                 <!-- /.dropdown-alerts -->
             </li>*@
             <!-- /.dropdown -->
-            <li><a href="../../Obavjestenje/Index">Obavjestenja <span id="no_notification" class="badge">0</span></a></li>
+
             <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                     <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
@@ -293,7 +293,7 @@
                         <!-- /.nav-second-level -->
                     </li>*@
                     <li>
-                        <a href="../../Obavjestenje/Index"><i class="fa fa-table fa-fw"></i> Obavjestenja<span class="fa arrow"></span></a>
+                        <a href="../../Obavjestenje/Index"><i class="fa fa-table fa-fw"></i> Obavjestenja <span id="no_notification" class="badge">0</span></a>
                         
                     </li>
            
@@ -301,7 +301,7 @@
                         <a href="forms.html"><i class="fa fa-edit fa-fw"></i> Forms</a>
                     </li>*@
                     <li>
-                        <a href="../../PutniNalog/Index"><i class="fa fa-wrench fa-fw"></i> Putni nalozi<span class="fa arrow"></span></a>
+                        <a href="../../PutniNalog/Index"><i class="fa fa-wrench fa-fw"></i> Putni nalozi <span id="no_order" class="badge">0</span></a>
                        
                     </li>
                     @*<li>
@@ -397,16 +397,27 @@
     <script>
         $(function () {
             $('#no_notification').html("0");
+            $('#no_order').html("0");
             // Reference the auto-generated proxy for the hub.  
             var chat = $.connection.notificationHub;
             // Create a function that the hub can call back to display messages.
             chat.client.sendNotification = function (msg) {
-                var total_not = parseInt($('#no_notification').html());
-                $('#no_notification').html((total_not + 1).toString());
-                $('#no_notification').css('background-color', 'red');
-                setTimeout(function () {
-                    $('#no_notification').css('background-color', '#777');
-                }, 3000);
+                if (msg == "Notification") {
+                    var total_not = parseInt($('#no_notification').html());
+                    $('#no_notification').html((total_not + 1).toString());
+                    $('#no_notification').css('background-color', 'red');
+                    setTimeout(function () {
+                        $('#no_notification').css('background-color', '#777');
+                    }, 3000);
+                }
+                else if (msg == "Order") {
+                    var total_not = parseInt($('#no_order').html());
+                    $('#no_order').html((total_not + 1).toString());
+                    $('#no_order').css('background-color', 'red');
+                    setTimeout(function () {
+                        $('#no_order').css('background-color', '#777');
+                    }, 3000);
+                }
             };
             $.connection.hub.start();
         });
